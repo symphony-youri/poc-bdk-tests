@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    testImplementation 'io.cucumber:cucumber-java:6.8.1'
+    testImplementation 'io.cucumber:cucumber-junit:6.8.1'
+
+    implementation platform('com.symphony.platformsolutions:symphony-bdk-bom:1.5.0.BETA')
+
+    testImplementation 'com.symphony.platformsolutions:symphony-bdk-core'
+    testImplementation 'com.symphony.platformsolutions:symphony-bdk-http-jersey2'
+    testImplementation 'com.symphony.platformsolutions:symphony-bdk-template-freemarker'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'hellocucumber', 'src/test/resources']
+        }
+    }
+}
+
+// you'll need to run: pip3 install behave sym-api-client-python==1.2.0
+task behave() {
+    doLast {
+        exec {
+            workingDir 'src/test/resources'
+            commandLine = "behave"
+        }
+    }
+}
+
+test.dependsOn cucumber, behave

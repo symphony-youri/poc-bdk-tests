@@ -1,0 +1,18 @@
+_version: '2.0'
+
+pod:
+  host: devx3.symphony.com
+
+agent:
+  host: devx3.symphony.com
+
+keyManager:
+  host: devx3.symphony.com
+
+bot:
+  username: daneel-bot
+  privateKeyPath: /Users/youri.bonnaffe/Documents/app-local/privatekey.pem
+
+app:
+  appId: testOboYouri
+  privateKeyPath: /Users/youri.bonnaffe/Documents/app-local/privatekey.pem

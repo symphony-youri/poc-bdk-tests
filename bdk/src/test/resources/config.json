@@ -1,0 +1,17 @@
+{
+  "sessionAuthHost": "devx3.symphony.com",
+  "sessionAuthPort": 443,
+  "keyAuthHost": "devx3.symphony.com",
+  "keyAuthPort": 443,
+  "podHost": "devx3.symphony.com",
+  "podPort": 443,
+  "agentHost": "devx3.symphony.com",
+  "agentPort": 443,
+
+  "botPrivateKeyPath":"/Users/youri.bonnaffe/Documents/app-local/",
+  "botPrivateKeyName": "privatekey.pem",
+
+
+  "botUsername": "daneel-bot",
+  "botEmailAddress": "daneel-bot@mail.com"
+}
